@@ -21,6 +21,7 @@ def replace_unicode(s):
     return s
 
 def jsonify(s):
+    global count
     """ Takes a string of the format
     
     #: Song words
@@ -38,9 +39,13 @@ def jsonify(s):
             s[i] == ':' and is_numeric(s[i - 1]) or
             s[i - 1] == '\n' and s[i: i + 7] == 'chorus:' or 
             s[i] == ':' and s[i - 6: i] == 'chorus' or
+            s[i - 1] == '\n' and s[i: i + 5] == 'nonum' or
+            s[i] == ':' and s[i - 5: i] == 'nonum' or
+            s[i - 1] == '\n' and s[i: i + 5] == 'note:' or
+            s[i] == ':' and s[i - 4: i] == 'note' or
             s[i - 1] == ' ' and s[i - 2] == ':'):
             song_s += '"'
-        elif  s[i] == '\n' and (is_numeric(s[i + 1]) or s[i + 1] == 'c'):
+        elif  s[i] == '\n' and (is_numeric(s[i + 1]) or s[i + 1] == 'c' or s[i + 1] == 'n'):
             song_s += '",'
         if not (i == len(s) - 2 and s[i] == '\n'):
             song_s += s[i]

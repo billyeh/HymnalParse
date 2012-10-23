@@ -1,7 +1,6 @@
 from urllib.request import urlopen
 import logging, site2, util
 
-logging.basicConfig(filename='parse.log', level=logging.INFO)
 parsed = False
 
 def parse(url, filename, parser):

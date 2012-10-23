@@ -6,24 +6,22 @@ directories = []
 for d in dirList:
     directories.append(d)
 
-parser = site1.HymnHTMLParser(False, ['li', 'p', 'a'], ['div', 'id', 'lyrics'])
-counter = 1131
-url = 'http://www.hymnal.net/hymn.php/h/'
-filename = 'hymns/hymn'
-hyphen_found= False
-
-while counter <= 1360:
-    # open the correct website and file
-    url += str(counter)
-    filename += str(counter)
-    filename += '.txt'
-    filename = os.path.abspath(filename)
-    
-    # open file and replace symbols
-    if filename not in directories:
-        parse.parse(url, filename, parser)
-        
-    # reset the values
-    url = 'http://www.hymnal.net/hymn.php/h/'
+def run(song_type, start_song, end_song):
+    parser = site1.HymnHTMLParser(False, ['li', 'p', 'a'], ['div', 'id', 'lyrics'])
+    url = 'http://www.hymnal.net/hymn.php/ns/'
     filename = 'hymns/hymn'
-    counter += 1
+    while start_song <= end_song:
+        # open the correct website and file
+        url += str(start_song)
+        filename += str(start_song) + '.txt'
+        filename = os.path.abspath(filename)
+    
+        # open file and replace symbols
+        if filename not in directories:
+            parse.parse(url, filename, parser)
+        
+        # reset the values
+        url = 'http://www.hymnal.net/hymn.php/ns/'
+        filename = 'hymns/hymn'
+        start_song += 1
+run('ns', 1, 384)
