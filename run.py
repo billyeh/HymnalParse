@@ -8,7 +8,7 @@ for d in dirList:
 
 def run(song_type, start_song, end_song):
     parser = site1.HymnHTMLParser(False, ['li', 'p', 'a'], ['div', 'id', 'lyrics'])
-    url = 'http://www.hymnal.net/hymn.php/ns/'
+    url = 'http://www.hymnal.net/hymn.php/' + song_type + '/'
     filename = 'hymns/hymn'
     while start_song <= end_song:
         # open the correct website and file
@@ -21,7 +21,8 @@ def run(song_type, start_song, end_song):
             parse.parse(url, filename, parser)
         
         # reset the values
-        url = 'http://www.hymnal.net/hymn.php/ns/'
+        url = 'http://www.hymnal.net/hymn.php/' + song_type + '/'
         filename = 'hymns/hymn'
         start_song += 1
-run('ns', 1, 384)
+for s in [41, 42, 51, 52, 61, 71, 81, 91, 92, 93, 94, 102, 103, 111, 112, 113, 114, 115, 116, 121, 131, 132, 141, 151, 152, 161, 162, 163, 164]:
+    run('c', s, s)

@@ -35,14 +35,12 @@ def jsonify(s):
     """
     song_s = '{"'
     for i in range(len(s)):
+        for word in ['chorus', 'nonum', 'note', 'copyright']:
+            if (s[i - 1] == '\n' and s[i: i + len(word) + 1] == word + ':' or
+                s[i] == ':' and s[i - len(word): i] == word):
+                song_s += '"'
         if (s[i - 1] == '\n' and is_numeric(s[i]) or
-            s[i] == ':' and is_numeric(s[i - 1]) or
-            s[i - 1] == '\n' and s[i: i + 7] == 'chorus:' or 
-            s[i] == ':' and s[i - 6: i] == 'chorus' or
-            s[i - 1] == '\n' and s[i: i + 5] == 'nonum' or
-            s[i] == ':' and s[i - 5: i] == 'nonum' or
-            s[i - 1] == '\n' and s[i: i + 5] == 'note:' or
-            s[i] == ':' and s[i - 4: i] == 'note' or
+            s[i] == ':' and is_numeric(s[i - 1]) or 
             s[i - 1] == ' ' and s[i - 2] == ':'):
             song_s += '"'
         elif  s[i] == '\n' and (is_numeric(s[i + 1]) or s[i + 1] == 'c' or s[i + 1] == 'n'):

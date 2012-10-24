@@ -21,4 +21,7 @@ for f in files:
         if i + 1 < len(song_text):
             if song_text[i] == '\n' and song_text[i + 1] == '"' and song_text[i - 2: i] != '",':
                 new_file.write('",')
+        if (song_text[i] == ':' and song_text[i - 9: i] == 'copyright' or
+            song_text[i] == 'c' and song_text[i: i + 9] == 'copyright'):
+            new_file.write('"')
         new_file.write(song_text[i])
