@@ -13,7 +13,7 @@ def parse(url, filename, parser):
     while count < len(parser.data):
         line = str(parser.data[count])
         if line[:4] == 'http':
-            logging.info(line.split()[0][:len(line.split()[0]) - 1])
+            logging.info(line.split()[0][:len(line.split()[0]) - 1]) #Log the url
             site2.parse_html(line, file)
             parsed = True
         if not parsed:

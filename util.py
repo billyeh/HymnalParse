@@ -1,3 +1,12 @@
+def get_files_in_directory(directory):
+    import os
+    dirList = os.listdir(directory)
+    files = []
+    for d in dirList:
+        if d[len(d) - 3: len(d)] == 'txt':
+            files.append(d)
+    return files
+
 def is_numeric(s):
     try:
         float(s)
@@ -9,12 +18,12 @@ def replace_unicode(s):
     unicode_chars = {'\xa0': " ", 
                       '\x91': "'", 
                       '\x92': "'", 
-                      '\x20\x20': "\n", 
+                      '\x20\x20': "\\n", 
                       '\x20': " ", 
-                      '\x93': '"', 
-                      '\x94': '"', 
+                      '\x93': '\"', 
+                      '\x94': '\"', 
                       ",,": "", 
-                      '\n, ': '\n', 
+                      '\n, ': '\\n', 
                       ' Chorus\n,\n,': 'chorus:'}
     for char in unicode_chars:
         s = s.replace(char, unicode_chars[char])
