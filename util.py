@@ -30,21 +30,31 @@ def replace_unicode(s):
     return s
 
 def jsonify(s):
-    global count
     """ Takes a string of the format
     
-    #: Song words
+    [TAG]: Song words
     Song words
     Song words
-    chorus: Song words
+    [TAG]: Song words
     Song words
     Song words
+    ...
     
-    and turns it into a json object.
+    and turns it into a JSON object of the format
+    {"[TAG]": "Song words
+    Song words
+    Song words",
+    "[TAG]": "Song words
+    Song words
+    Song words",
+    ...}
+    
     """
+    TAGS = ['chorus', 'nonum', 'note', 'copyright']
+
     song_s = '{"'
     for i in range(len(s)):
-        for word in ['chorus', 'nonum', 'note', 'copyright']:
+        for word in TAGS:
             if (s[i - 1] == '\n' and s[i: i + len(word) + 1] == word + ':' or
                 s[i] == ':' and s[i - len(word): i] == word):
                 song_s += '"'
