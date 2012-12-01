@@ -25,7 +25,11 @@ def run(directory):
     files = util.get_files_in_directory(directory)
     for f in files:
         song_text = open(directory + f, 'r').read()
-        song_text = song_text.replace('": "', ' ').replace('{', '[').replace('}', ']').replace('\n', '\\n').replace('",\\n"', '", "')
+        song_text = (song_text.replace('": "', ' ')
+                              .replace('{', '[')
+                              .replace('}', ']')
+                              .replace('\n', '\\n')
+                              .replace('",\\n"', '", "'))
         new_file = open(directory + f, 'w')
         for i in range(len(song_text)):
             if (song_text[i] == '"' and song_text[i + 1: i + 4] not in TAGS and
