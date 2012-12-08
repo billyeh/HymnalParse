@@ -1,1 +1,0 @@
-HYMNALPARSER\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\nThis module reads songs from the site http://www.hymnal.net.\nIt parses the html into songs and outputs them as json files.\n
