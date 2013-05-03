@@ -5,7 +5,7 @@ The code in this project is aimed at parsing hymns from [http://hymnal.net](http
 About the Website
 ------------
 Understanding the structure of the website helps in using the parser.
-There are four types of hymns: Hymns ('h'), New Songs ('c'), Children's Songs ('c'), and Long Beach Songs ('lb). 
+There are four types of hymns: Hymns ('h'), New Songs ('ns'), Children's Songs ('c'), and Long Beach Songs ('lb). 
 Each song type inherits the format http://www.hymnal.net/hymn.php/[type]/[number], and the parser uses these two parameters as input for the songs to download.
 
 Usage
